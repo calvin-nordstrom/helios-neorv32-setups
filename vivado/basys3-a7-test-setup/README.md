@@ -57,6 +57,10 @@ vivado -mode batch -source program_bitstream.tcl
 - Press the center button (BTNC) to reset the processor
 - You should see the NEORV32 bootloader prompt
 
+## Known Issues
+
+- If there is an invalid board part, 
+
 ## Notes
 
 - The `work/` directory and Vivado-generated files are git-ignored

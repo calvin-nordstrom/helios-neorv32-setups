@@ -25,7 +25,7 @@ switch $board {
 # Create project
 create_project -part $a7part $a7prj $outputdir
 
-set_property board_part digilentinc.com:${board}:part0:1.1 [current_project]
+set_property board_part digilentinc.com:${board}:part0:1.2 [current_project]
 set_property target_language VHDL [current_project]
 
 # Define filesets
