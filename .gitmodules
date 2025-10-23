@@ -6,3 +6,6 @@
 	path = constraints
 	url = https://github.com/hdl/constraints
 	ignore = dirty
+[submodule "neorv32-hal"]
+	path = neorv32-hal
+	url = https://github.com/GNAT-Academic-Program/neorv32-hal.git
