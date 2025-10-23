@@ -16,6 +16,24 @@ This guide covers three development boards:
 
 ---
 
+## Getting Started
+
+> **Important:** This repository uses Git submodules. You **must** clone with submodules to get the complete project.
+
+**Clone this repository with submodules:**
+
+```bash
+git clone --recurse-submodules https://github.com/GNAT-Academic-Program/neorv32-setups.git
+cd neorv32-setups
+```
+
+**If you already cloned without submodules, initialize them:**
+
+```bash
+git submodule update --init --recursive
+```
+---
+
 ## Building the Softcore
 
 ### Option 1: Digilent Basys3 (Xilinx Vivado)
