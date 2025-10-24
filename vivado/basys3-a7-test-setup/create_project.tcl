@@ -66,6 +66,9 @@ if {[file exists $src_file]} {
     # Invert reset polarity
     regsub -all {rstn_i\s*=>\s*rstn_i} \
         $fc {rstn_i      => not(rstn_i)} fc
+    
+    # Remove GPIO
+    regsub -all {.gpio.\n} $fc {} fc
 
     # Write the modified copy into the project folder
     set out_fd [open $dst_file w]
