@@ -148,16 +148,35 @@ The neorv32-hal repository is already included as a submodule in this fork.
    cd neorv32-hal/demos
    ```
 
-2. **Build with Alire:**
-   ```bash
-   alr build
-   ```
+2. **Build the firmware using the provided scripts:**
 
-3. **Convert and package the firmware:**
+   **For application binary (to upload via bootloader):**
+   
+   **Linux/macOS:**
    ```bash
-   riscv64-elf-objcopy -O binary bin/bios bin/bios.bin
-   image_gen -app_bin bin/bios.bin bin/bios.exe
+   ./build_app_bin.sh
    ```
+   
+   **Windows:**
+   ```batch
+   build_app_bin.bat
+   ```
+   
+   This script builds the Ada firmware with Alire and converts it to the NEORV32 executable format (`bin/bios.exe`) that can be uploaded via the bootloader.
+
+   **For bootloader VHDL image (to synthesize into bitstream):**
+   
+   **Linux/macOS:**
+   ```bash
+   ./build_bld_vhd.sh
+   ```
+   
+   **Windows:**
+   ```batch
+   build_bld_vhd.bat
+   ```
+   
+   This script builds the Ada firmware and generates a VHDL file (`neorv32/rtl/core/neorv32_bootloader_image.vhd`) that will be synthesized directly into the FPGA bitstream as the bootloader ROM.
 
 ### Upload Firmware to FPGA
 
