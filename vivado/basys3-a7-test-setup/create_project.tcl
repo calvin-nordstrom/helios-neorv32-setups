@@ -25,7 +25,7 @@ switch $board {
 # Create project
 create_project -part $a7part $a7prj $outputdir
 
-set_property board_part digilentinc.com:${board}:part0:1.1 [current_project]
+#set_property board_part digilentinc.com:${board}:part0:1.1 [current_project]
 set_property target_language VHDL [current_project]
 
 # Define filesets
@@ -66,9 +66,6 @@ if {[file exists $src_file]} {
     # Invert reset polarity
     regsub -all {rstn_i\s*=>\s*rstn_i} \
         $fc {rstn_i      => not(rstn_i)} fc
-    
-    # Remove GPIO
-    regsub -all {.gpio.\n} $fc {} fc
 
     # Write the modified copy into the project folder
     set out_fd [open $dst_file w]
