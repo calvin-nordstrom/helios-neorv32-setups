@@ -57,11 +57,11 @@ if {[file exists $src_file]} {
 
     # Adjust IMEM size
     regsub -all {IMEM_SIZE\s*:\s*natural\s*:=\s*[0-9\*]+;} \
-        $fc {IMEM_SIZE       : natural := 32*1024;} fc
+        $fc {IMEM_SIZE       : natural := 64*1024;} fc
 
     # Adjust DMEM size
     regsub -all {DMEM_SIZE\s*:\s*natural\s*:=\s*[0-9\*]+} \
-        $fc {DMEM_SIZE       : natural := 16*1024} fc
+        $fc {DMEM_SIZE       : natural := 64*1024} fc
 
     # Invert reset polarity
     regsub -all {rstn_i\s*=>\s*rstn_i} \
