@@ -5,7 +5,7 @@ set board "basys3"
 # Directory of this Tcl script (works in GUI/batch)
 set script_dir [file dirname [file normalize [info script]]]
 
-# Build absolute path from the script location + your relative
+# Build absolute path from the script location + relative
 set repo_abs   [file normalize [file join $script_dir .. vivado-board-dependencies new board_files]]
 
 # Set it
