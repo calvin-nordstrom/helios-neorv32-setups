@@ -26,12 +26,6 @@ This guide covers three development boards:
 git clone --recurse-submodules https://github.com/GNAT-Academic-Program/neorv32-setups.git
 cd neorv32-setups
 ```
-
-**If you already cloned without submodules, initialize them:**
-
-```bash
-git submodule update --init --recursive
-```
 ---
 
 ## Building the Softcore
@@ -54,7 +48,6 @@ git submodule update --init --recursive
    ```bash
    vivado -mode batch -source program_bitstream.tcl
    ```
-   Or use Vivado GUI Hardware Manager with: `work/basys3-test-setup.runs/impl_1/basys3-test-setup.bit`
 
 4. Connect via UART at **19200 baud, 8N1** (USB-UART appears as `/dev/ttyUSB0` or `COM*` on Windows)
 
@@ -114,8 +107,22 @@ See [gowineda/tang-nano-9k/README.md](gowineda/tang-nano-9k/README.md) for detai
 ### Prerequisites
 
 1. **Install Alire** (Ada package manager): [alire.ada.dev](https://alire.ada.dev/)
+   
+2. **Ensure RISC-V toolchain is in PATH** (installed automatically by Alire):
+   
+   **Linux/macOS:**
+   ```bash
+   export PATH="$PATH:~/.local/share/alire/toolchains/gnat_riscv64_elf_*/bin"
+   ```
+   Add to `~/.bashrc` or `~/.zshrc` to make permanent.
+   
+   **Windows (PowerShell):**
+   ```powershell
+   $env:PATH += ";$env:USERPROFILE\.local\share\alire\toolchains\gnat_riscv64_elf_*\bin"
+   ```
+   Add to PowerShell profile or set permanently via System Environment Variables.
 
-2. **Build and install the bootloader image generator:**
+3. **Build and install the bootloader image generator:**
    
    **Linux/macOS:**
    ```bash
@@ -131,40 +138,22 @@ See [gowineda/tang-nano-9k/README.md](gowineda/tang-nano-9k/README.md) for detai
    ```
    Then manually copy `image_gen.exe` to a directory in your PATH (e.g., `C:\Windows\System32`) or add the current directory to your PATH.
 
-3. **Ensure RISC-V toolchain is in PATH** (installed automatically by Alire):
-   
-   **Linux/macOS:**
-   ```bash
-   export PATH="$PATH:~/.local/share/alire/toolchains/gnat_riscv64_elf_*/bin"
-   ```
-   Add to `~/.bashrc` or `~/.zshrc` to make permanent.
-   
-   **Windows (PowerShell):**
-   ```powershell
-   $env:PATH += ";$env:USERPROFILE\.local\share\alire\toolchains\gnat_riscv64_elf_*\bin"
-   ```
-   Add to PowerShell profile or set permanently via System Environment Variables.
 
 ### Build the Demo Firmware
 
 The neorv32-hal repository is already included as a submodule in this fork.
 
-1. **Initialize and update submodules** (if not already done):
-   ```bash
-   git submodule update --init --recursive
-   ```
-
-2. **Navigate to the demos directory:**
+1. **Navigate to the demos directory:**
    ```bash
    cd neorv32-hal/demos
    ```
 
-3. **Build with Alire:**
+2. **Build with Alire:**
    ```bash
    alr build
    ```
 
-4. **Convert and package the firmware:**
+3. **Convert and package the firmware:**
    ```bash
    riscv64-elf-objcopy -O binary bin/bios bin/bios.bin
    image_gen -app_bin bin/bios.bin bin/bios.exe
