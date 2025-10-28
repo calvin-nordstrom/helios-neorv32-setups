@@ -3,4 +3,5 @@
 **.log
 **.jou
 vivado/dfx_runtime.txt
+dfx_runtime.txt
 vivado/work/
