@@ -227,6 +227,14 @@ The neorv32-hal repository is already included as a submodule in this fork.
    - Go to File → Transfer → XMODEM → Send
    - Select `bin\bios.exe`
    - After upload completes, type `e` to execute
+    **NOTE** This did not work for some people an alternative method has been found
+   - Type `u` at `CMD:>` prompt
+   - Go to File → Send File
+   - Select Checkbox Button Binary
+   - Select To Radio Button Sequential Read
+   ![alt text](send_file_setting.png)
+   - Select `bin\bios.exe`
+   - After upload completes, type `e` to execute
 
 ---
 
