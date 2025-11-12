@@ -27,7 +27,8 @@ set_property PACKAGE_PIN V19 [get_ports {gpio_o[3]}]
 set_property PACKAGE_PIN W18 [get_ports {gpio_o[4]}]
 set_property PACKAGE_PIN U15 [get_ports {gpio_o[5]}]
 set_property PACKAGE_PIN U14 [get_ports {gpio_o[6]}]
-set_property PACKAGE_PIN V14 [get_ports {gpio_o[7]}]
+#set_property PACKAGE_PIN V14 [get_ports {gpio_o[7]}]
+set_property PACKAGE_PIN B16 [get_ports {gpio_o[7]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {gpio_o[*]}]
 
 ## Bitstream configuration

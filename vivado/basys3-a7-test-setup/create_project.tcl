@@ -37,6 +37,49 @@ set_property board_part digilentinc.com:${board}:part0:1.2 [current_project]
 set_property target_language VHDL [current_project]
 
 # Define filesets
+# --- Patch NEORV32 files in-place (enable GPTMR) ---
+# Root of NEORV32 RTL (relative to this script)
+set neorv32_rtl_dir "./../../neorv32/rtl"
+
+# Patterns:
+#  - declaration: IO_GPTMR_EN : boolean := false;
+#  - generic map: IO_GPTMR_EN => false
+set pattern_decl {IO_GPTMR_EN\s*:\s*boolean\s*:=\s*false}
+set repl_decl    {IO_GPTMR_EN           : boolean                        := true}
+set pattern_map  {IO_GPTMR_EN\s*=>\s*false}
+set repl_map     {IO_GPTMR_EN      => true}
+
+# List of files to patch: {subdir filename}
+set files_to_patch {
+    {core              neorv32_package.vhd}
+    {core              neorv32_top.vhd}
+    {system_integration neorv32_vivado_ip.vhd}
+}
+
+foreach spec $files_to_patch {
+    lassign $spec subdir fname
+    set file [file join $neorv32_rtl_dir $subdir $fname]
+
+    if {![file exists $file]} {
+        puts "Skipping missing file $file"
+        continue
+    }
+
+    set fd [open $file r]
+    set fc [read $fd]
+    close $fd
+
+    # Apply both substitutions
+    set n1 [regsub -all $pattern_decl $fc $repl_decl fc]
+    set n2 [regsub -all $pattern_map  $fc $repl_map  fc]
+
+    puts "Patched [expr {$n1 + $n2}] occurrence(s) in $file"
+
+    set fd [open $file w]
+    puts -nonewline $fd $fc
+    close $fd
+}
+
 
 ## Core: NEORV32
 add_files [glob ./../../neorv32/rtl/core/*.vhd]
