@@ -9,6 +9,7 @@
 [submodule "neorv32-hal"]
 	path = neorv32-hal
 	url = https://github.com/jwyffels2/helios-neorv32-hal.git
+
 [submodule "neorv32"]
-	path = neorv32
-	url = https://github.com/jwyffels2/neorv32.git
+    path = neorv32
+    url = https://github.com/jwyffels2/neorv32.git
