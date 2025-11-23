@@ -1,7 +1,3 @@
-[submodule "neorv32"]
-	path = neorv32
-	url = https://github.com/GNAT-Academic-Program/neorv32.git
-	ignore = dirty
 [submodule "constraints"]
 	path = constraints
 	url = https://github.com/hdl/constraints
@@ -13,3 +9,6 @@
 [submodule "neorv32-hal"]
 	path = neorv32-hal
 	url = https://github.com/jwyffels2/helios-neorv32-hal.git
+[submodule "neorv32"]
+	path = neorv32
+	url = https://github.com/jwyffels2/neorv32.git
